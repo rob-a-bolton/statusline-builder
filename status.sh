@@ -2,24 +2,16 @@
 
 cd $(dirname $(readlink -f "$0"))
 
-if [ ! -f out ]; then
-    mkfifo out
-fi
-
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
-for file in scripts/* ; do
-    $file &
-done
+find scripts -executable ! -type d -exec sh -c '"$0" &' {} \;
 
 buildStatus() {
-    echo building status
-    cat outputs/* | tr '\n' ' ' | sed 's/$/\n/' > out
-    echo built
+    cat outputs/* | tr '\n' ' ' | sed 's/$/\n/' 
 }
 
 buildStatus
 
-while inotifywait outputs -e modify -e create ; do
+while inotifywait outputs -e modify -e create 1>/dev/null 2>/dev/null ; do
     buildStatus
 done
