@@ -41,9 +41,8 @@ def exit():
     sys.exit(0)
     
 # Catch some deadly signals
-signal.signal( signal.SIGILL, sig_handler )
-signal.signal( signal.SIGINT, sig_handler )
-signal.signal( signal.SIGTERM, sig_handler )
+for sig in [ signal.SIGILL, signal.SIGINT, signal.SIGTERM ]:
+    signal.signal(sig, sig_handler)
 
 for script_file in [ file for file in scripts_dir.iterdir() if file.is_file()]:
     path = str( script_file.resolve() )
