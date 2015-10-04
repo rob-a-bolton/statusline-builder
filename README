@@ -1,15 +1,11 @@
 # About
-This script utilizes the inotify library to collect a series of outputs into a single status line and writes it to stdout.
+This script runs a collection of other scripts and prints their collective last line of output.
 
 # Usage
-Place scripts into the `scripts` directory and run `status.sh`
-At the moment the scripts must write to a relative "outputs" directory. The name of their output file determines the order they will appear in the status line (e.g. `00-xyzzy` will come before `20-battery`).
+Place scripts into the `scripts` directory and run `status.py`.
+You will probably want to redirect this into a FIFO for e.g. dvtm, dzen
 
 To stop the script send a SIGINT or SIGTERM (e.g. Ctrl+c or kill).
 
-To use with dvtm, pipe the output into a fifo and use dvtm's `-s` switch to specify the fifo.
-
-Although built for usage with dvtm, this should also work with dzen.
-
 # Requirements
-All this script relies on is inotify and the inotify tool "inotifywait".
+Python 3
