@@ -26,7 +26,7 @@ program_description="Runs a collection of scripts, printing their collective las
 program_name="statusline-builder"
 program_version="0.2"
 
-home_script_dir = os.path.expanduser("~/.stlb.d")
+home_script_dir = os.path.expanduser("~/.stlbdr.d")
 
 argparser = argparse.ArgumentParser(description=program_description)
 argparser.add_argument("--script-dir", "-d",

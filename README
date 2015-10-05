@@ -2,7 +2,7 @@
 This script runs a collection of other scripts and prints their collective last line of output.
 
 # Usage
-Place scripts into the `scripts` directory and run `status.py`.
+Place scripts into ~/stldbr.d (or specify a directory with the -s option).
 You will probably want to redirect this into a FIFO for e.g. dvtm, dzen
 
 To stop the script send a SIGINT or SIGTERM (e.g. Ctrl+c or kill).
