@@ -3,6 +3,8 @@ This script runs a collection of other scripts and prints their collective last 
 
 # Usage
 Place scripts into ~/stldbr.d (or specify a directory with the -s option).
+You may also place text files in this directory and they will be printed with newlines replaced by spaces.
+Scripts and text files are differentiated based on whether they have +x permissions, so do not make your text files executable.
 You will probably want to redirect this into a FIFO for e.g. dvtm, dzen
 
 To stop the script send a SIGINT or SIGTERM (e.g. Ctrl+c or kill).
