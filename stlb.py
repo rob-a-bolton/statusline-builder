@@ -5,6 +5,7 @@ import argparse
 import signal
 import os
 import sys
+from os import R_OK, X_OK
 from pathlib import Path, PurePath
 from subprocess import Popen, PIPE
 
@@ -70,7 +71,7 @@ if not (script_dir.exists() and script_dir.is_dir()):
 for sig in [ signal.SIGILL, signal.SIGINT, signal.SIGTERM ]:
     signal.signal(sig, sig_handler)
 
-for script_file in [ file for file in script_dir.iterdir() if file.is_file()]:
+for script_file in [ file for file in script_dir.iterdir() if file.is_file() and os.access(str(file.resolve()), R_OK | X_OK)]:
     path = str( script_file.resolve() )
     script = Script( path )
     scripts.append( script )
