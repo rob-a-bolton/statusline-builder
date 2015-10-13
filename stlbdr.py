@@ -78,13 +78,13 @@ if not (script_dir.exists() and script_dir.is_dir()):
 for sig in [ signal.SIGILL, signal.SIGINT, signal.SIGTERM ]:
     signal.signal(sig, sig_handler)
 
-for file in [ file for file in script_dir.iterdir() if file.is_file() and os.access(str(file.resolve()), R_OK)]:
+for file in sorted([ file for file in script_dir.iterdir() if file.is_file() and os.access(str(file.resolve()), R_OK)]):
     path = str( file.resolve() )
     if os.access(path, X_OK):
         script = Script( path )
         outputs.append( script )
         async_loop.add_reader( script.out, script.update )
-    else:
+    elif path.endswith(".txt"):
         output = DisplayFile( path )
         outputs.append( output )
 
