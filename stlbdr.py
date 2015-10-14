@@ -31,7 +31,7 @@ class DisplayFile:
 
 program_description="Runs a collection of scripts, printing their collective last line of output to stdout."
 program_name="statusline-builder"
-program_version="0.2"
+program_version="0.2.1"
 
 home_script_dir = os.path.expanduser("~/.stlbdr.d")
 
@@ -60,6 +60,7 @@ def sig_handler( signum, frame ):
 def exit(code = 0):
     for script in [output for output in outputs if isinstance( output, Script ) ]:
         script.process.terminate()
+    print("\n")
     sys.exit(code)
 
 def exit_with_error(message, code=1):
